@@ -1,0 +1,15 @@
+<div class="details-container" *ngIf="studentDetails">
+  <h2>Student Details</h2>
+
+  <div class="card">
+    <p><strong>ID:</strong> {{ studentDetails.id }}</p>
+    <p><strong>Name:</strong> {{ studentDetails.name }}</p>
+    <!-- Add more fields if needed -->
+  </div>
+
+  <button class="back-button" (click)="goBackToList()">← Back to List</button>
+</div>
+
+<div class="toast error-toast" *ngIf="showError">
+  {{ errorMessage }}
+</div>

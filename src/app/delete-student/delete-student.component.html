@@ -1,0 +1,13 @@
+<div class="delete-student-container">
+  <h2>Deleting student...</h2>
+
+  <!-- Success Toast -->
+  <div class="toast success-toast" *ngIf="showSuccess">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error Toast -->
+  <div class="toast error-toast" *ngIf="showError">
+    {{ errorMessage }}
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="student-table-container">
+
+    <div class="student-table-header">
+        <h2>Student List</h2>
+        <button class="add-button" (click)="goToAddStudent()">+ Add New</button>
+    </div>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>  <!-- New column -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of students">
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>
+                <button class="details-btn" (click)="goToViewDetails(student.id)">Details</button>
+                <button class="edit-btn" (click)="goToEditStudent(student.id)">Edit</button>
+                <button class="delete-btn" (click)="goToDeleteStudent(student.id)">Delete</button>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="pagination-info" *ngIf="pageInfo">
+        <p>Total: {{ pageInfo.totalCount }} | Page: {{ pageInfo.currentPage }} / {{ pageInfo.totalPageCount }}</p>
+
+        <div class="pagination-buttons">
+        <button (click)="goToPreviousPage()" [disabled]="currentPage === 1">⬅ Previous</button>
+        <button (click)="goToNextPage()" [disabled]="!pageInfo.hasNextPage">Next ➡</button>
+        </div>
+    </div>
+
+</div>

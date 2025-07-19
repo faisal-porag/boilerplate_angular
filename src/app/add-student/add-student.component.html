@@ -1,0 +1,46 @@
+<div class="add-student-form-container">
+  <h2>Add Student</h2>
+
+  <form [formGroup]="student" (ngSubmit)="handleSubmit()" class="styled-form" novalidate>
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        placeholder="Enter student name"
+      />
+
+      <!-- Live character counter -->
+      <div class="char-counter">
+        {{ student.controls['name'].value?.length || 0 }} / 20
+      </div>
+
+      <!-- Validation Errors -->
+      <div
+        class="error-message"
+        *ngIf="student.controls['name'].touched && student.controls['name'].invalid"
+      >
+        <small *ngIf="student.controls['name'].hasError('required')">
+          Name is required.
+        </small>
+        <small *ngIf="student.controls['name'].hasError('maxlength')">
+          Name cannot be more than 20 characters.
+        </small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="student.invalid">Submit</button>
+  </form>
+</div>
+
+<!-- Success Toast -->
+<div class="toast success-toast" *ngIf="showSuccess">
+  {{ successMessage }}
+</div>
+
+
+<!-- Error Toast -->
+<div class="toast error-toast" *ngIf="showError">
+  {{ errorMessage }}
+</div>
