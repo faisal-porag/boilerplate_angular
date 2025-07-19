@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 interface ApiResponse<T = any> {
   code: string;
@@ -47,7 +48,7 @@ export class AddStudentComponent implements OnInit {
       return;
     }
 
-    const url = 'http://localhost:8087/api/v1/users';
+    const url = `${environment.apiBaseUrl}/users`;
 
     this.httpClient.post<ApiResponse>(url, this.student.value)
       .subscribe(response => {

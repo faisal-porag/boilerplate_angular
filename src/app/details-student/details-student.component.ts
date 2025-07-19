@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 interface ApiResponse<T = any> {
   code: string;
@@ -37,7 +38,7 @@ export class DetailsStudentComponent implements OnInit {
   }
 
   getUserDetails(studentId: number) {
-    const url = `http://localhost:8087/api/v1/users/${studentId}`;
+    const url = `${environment.apiBaseUrl}/users/${studentId}`;
 
     this.httpClient.get<ApiResponse>(url)
       .subscribe({

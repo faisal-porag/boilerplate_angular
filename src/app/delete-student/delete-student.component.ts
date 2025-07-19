@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 
 interface ApiResponse<T = any> {
   code: string;
@@ -39,7 +41,7 @@ export class DeleteStudentComponent implements OnInit {
   
     confirmAndDelete(studentId: number) {
     if (confirm(`Are you sure you want to delete student ID ${studentId}?`)) {
-      const url = `http://localhost:8087/api/v1/users/delete-user`;
+      const url = `${environment.apiBaseUrl}/users/delete-user`;
 
       const body = { id: studentId }; // Assuming your backend expects ID in body
 

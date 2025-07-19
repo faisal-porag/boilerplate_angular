@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 interface ApiResponse<T = any> {
   code: string;
@@ -42,7 +43,7 @@ export class EditStudentComponent implements OnInit {
 
   
     getUserDetails(studentId: number) {
-      const url = `http://localhost:8087/api/v1/users/${studentId}`;
+      const url = `${environment.apiBaseUrl}/users/${studentId}`;
       this.httpClient.get<ApiResponse>(url).subscribe({
         next: (response) => {
           const studentData = response.data;
@@ -68,7 +69,7 @@ export class EditStudentComponent implements OnInit {
         return;
       }
 
-      const url = `http://localhost:8087/api/v1/users/${this.studentId}`;
+      const url = `${environment.apiBaseUrl}/users/${this.studentId}`;
       this.httpClient.put<ApiResponse>(url, this.student.value).subscribe({
         next: (response) => {
           this.successMessage = response.message || 'Student updated successfully!';

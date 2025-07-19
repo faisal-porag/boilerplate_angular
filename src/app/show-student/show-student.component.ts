@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-show-student',
@@ -30,7 +31,7 @@ export class ShowStudentComponent implements OnInit {
     // Logic to fetch all students from the server
     // This could involve making an HTTP GET request to an API endpoint
     console.log('Fetching all students...');
-    const url = `http://localhost:8087/api/v1/users?page=${page}&size=${this.pageSize}`;
+    const url = `${environment.apiBaseUrl}/users?page=${page}&size=${this.pageSize}`;
     console.log(`Request URL: ${url}`);
     // Use HttpClient to make the request and handle the response
     this.httpClient.get<any>(url).subscribe(response => {
